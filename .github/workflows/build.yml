@@ -40,9 +40,9 @@ jobs:
       - uses: seanmiddleditch/gha-setup-ninja@v5
       - name: Clone Qt repo
         run: |
-          git clone https://code.qt.io/qt/qt5.git qt -b 6.7.2
+          git clone https://code.qt.io/qt/qt5.git qt -b '${{env.QT_VERSION}}'
           cd qt
-          perl init-repository -f --module-subset=qtbase
+          perl init-repository -f --module-subset=default,qt5compat,qtwebsockets
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
@@ -55,18 +55,18 @@ jobs:
         run: |
           mkdir qt_build
           cd qt_build
-          ..\qt\configure.bat -release -static -static-runtime -optimize-size -prefix "..\qt_static" -no-feature-accessibility
-          cmake --build . --parallel 4
+          ../qt/configure.bat -release -static -static-runtime -ltcg -prefix "../qt_static" -no-feature-accessibility
+          cmake --build . --parallel 4 
           cmake --install .
 
-      - name: Build Qt (macOS)
-        if: contains(matrix.os, 'macos')
-        run: |
-          mkdir qt_build
-          cd qt_build
-          ../qt/configure -static -release -optimize-size -prefix "../qt_static" -no-feature-accessibility -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
-          cmake --build . --parallel 3
-          cmake --install .
+ #     - name: Build Qt (macOS)
+ #       if: contains(matrix.os, 'macos')
+ #       run: |
+ #         mkdir qt_build
+ #         cd qt_build
+ #         ../qt/configure -static -release -ltcg -optimize-size -prefix "../qt_static" -no-feature-accessibility -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+ #         cmake --build . --parallel 3
+ #         cmake --install .
 
       - name: Package binaries
         run: |
