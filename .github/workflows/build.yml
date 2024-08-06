@@ -1,6 +1,7 @@
 name: Build static Qt
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - '*-*' # Only tags with build number
@@ -54,7 +55,7 @@ jobs:
         run: |
           mkdir qt_build
           cd qt_build
-          ..\qt\configure.bat -release -static -optimize-size -prefix "..\qt_static" -no-feature-accessibility
+          ..\qt\configure.bat -release -static -static-runtime -optimize-size -prefix "..\qt_static" -no-feature-accessibility
           cmake --build . --parallel 4
           cmake --install .
 
