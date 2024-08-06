@@ -40,7 +40,7 @@ jobs:
       - uses: seanmiddleditch/gha-setup-ninja@v5
       - name: Clone Qt repo
         run: |
-          git clone https://code.qt.io/qt/qt5.git qt -b '${{env.QT_VERSION}}'
+          git clone https://code.qt.io/qt/qt5.git qt -b 6.7.2
           cd qt
           perl init-repository -f --module-subset=qtbase
 
