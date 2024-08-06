@@ -42,7 +42,7 @@ jobs:
         run: |
           git clone https://code.qt.io/qt/qt5.git qt -b '${{env.QT_VERSION}}'
           cd qt
-          perl init-repository -f --module-subset=default,qt5compat,qtwebsockets
+          perl init-repository -f --module-subset=default,qt5compat,qtwebsockets,-qtwebview,-qtwebengine
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir qt_build
           cd qt_build
-          ../qt/configure.bat -release -static -static-runtime -ltcg -prefix "../qt_static" -no-feature-accessibility
+          ../qt/configure.bat -release -static -static-runtime -ltcg -prefix "../qt_static" -no-feature-accessibility -skip qtwebengine -skip qtwebview -nomake tests -nomake examples
           cmake --build . --parallel 4 
           cmake --install .
 
@@ -64,7 +64,7 @@ jobs:
  #       run: |
  #         mkdir qt_build
  #         cd qt_build
- #         ../qt/configure -static -release -ltcg -optimize-size -prefix "../qt_static" -no-feature-accessibility -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+ #         ../qt/configure -static -release -ltcg -optimize-size -prefix "../qt_static" -no-feature-accessibility  -- -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
  #         cmake --build . --parallel 3
  #         cmake --install .
 
