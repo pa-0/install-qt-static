@@ -42,7 +42,7 @@ jobs:
         run: |
           git clone https://code.qt.io/qt/qt5.git qt -b '${{env.QT_VERSION}}'
           cd qt
-          perl init-repository -f --module-subset=default,qt5compat,qtwebsockets,-qtwebview,-qtwebengine
+          perl init-repository -f --module-subset=qtbase,qtcore,qtgui,qtwidgets,qtsql,qtsvg,qtnetwork,qtxml,qtprintsupport,qtqml,qtwebsockets,qtconcurrent,qt5compat,qtscript,qtimageformats,qtrepotools,-qtwebview,-qtwebengine
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
