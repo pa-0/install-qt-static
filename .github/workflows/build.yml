@@ -12,17 +12,15 @@ jobs:
   build:
     strategy:
       fail-fast: false
-    runs-on: windows-latest
-       
-#     matrix:
-#      os: [windows-latest, macos-latest]
-#        include:
-#        - os: windows-latest
-#          os-caption: windows
-#        - os: macos-latest
-#          os-caption: macos
+      matrix:
+        os: [windows-latest, macos-latest]
+        include:
+         - os: windows-latest
+           os-caption: windows
+         - os: macos-latest
+           os-caption: macos
 
-#   runs-on: ${{matrix.os}}
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
       - name: Find Qt version
@@ -37,7 +35,7 @@ jobs:
           print("Found Qt version:", match[1])
           with open(os.environ["GITHUB_ENV"], "a") as f:
             f.write("QT_VERSION=" + match[1])
-
+      
       - uses: seanmiddleditch/gha-setup-ninja@v5
       - name: Clone Qt repo
         run: |
@@ -71,13 +69,11 @@ jobs:
 
       - name: Package binaries
         run: |
-          7z a qt-${{env.QT_VERSION}}-static-windows.zip qt_static
-          # 7z a qt-${{env.QT_VERSION}}-static-${{matrix.os-caption}}.zip qt_static
+          7z a qt-${{env.QT_VERSION}}-static-${{matrix.os-caption}}.zip qt_static
 
       - uses: actions/upload-artifact@v4
         with:
-          name: qt-static-windows
-          # name: qt-static-${{matrix.os-caption}}
+          name: qt-static-${{matrix.os-caption}}
           path: qt-*.zip
 
   release:
