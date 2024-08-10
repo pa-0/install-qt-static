@@ -19,9 +19,11 @@ runs:
         fi
         qt_version=${VERSION_TAG#*v}
         qt_version=${qt_version%-*}
-        # curl -LO https://github.com/AllanChain/install-qt-static/releases/download/${VERSION_TAG}/qt-${qt_version}-static-${os_name}.zip
-        curl -LO https://github.com/pa-0/install-qt-static/actions/runs/10312658056/artifacts/1793653525
-        7z x qt-*.zip
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.001
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.002
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.003
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.004
+        7z e 'qt-6.7.2-static-windows.zip.zip.001' -tsplit
         if [[ $os_name == "windows" ]]; then
           echo "$(pwd -W | sed 's,/,\\,g')\qt_static\bin" >> $GITHUB_PATH
         else
