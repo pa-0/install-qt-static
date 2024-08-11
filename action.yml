@@ -10,21 +10,16 @@ runs:
           echo "Linux is not supported"
           exit 1
         elif [[ $(uname) == "Darwin" ]]; then
-          os_name=macos
-        elif [[ $(uname) == "MINGW"* ]]; then
-          os_name=windows
-        else
-          echo "Unknown operating system"
+          echo "Mac is not supported by this forked action. See original repo."
           exit 1
+        else
+          os_name=windows
         fi
-        qt_version=${VERSION_TAG#*v}
-        qt_version=${qt_version%-*}
         cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.001
         cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.002
         cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.003
         cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.004
-        qt-6.7.2-static-windows.zip.zip.001 -l
-        7z x qt-6.7.2-static-windows.zip.zip.001
+        7z x qt-6.7.2-static-windows.zip.zip.001 -r
         ls -al
         if [[ $os_name == "windows" ]]; then
           echo "$(pwd -W | sed 's,/,\\,g')\qt_static\bin" >> $GITHUB_PATH
