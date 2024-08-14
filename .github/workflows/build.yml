@@ -41,7 +41,7 @@ jobs:
         run: |
           git clone https://code.qt.io/qt/qt5.git qt -b '${{env.QT_VERSION}}'
           cd qt
-          perl init-repository -f --module-subset=essential,addon,qt5compat,qtrepotools,-qtserialbus,-qtserialport,-qtsensors,-qtwebview,-qtwebengine,-qtwayland,-qtopcua,-qtquick3dphysics,-qtquick3d
+          perl init-repository -f --module-subset=essential,addon,qt5compat,qtrepotools,,-qtactiveqt,-qt3d,-qtcharts,-qtdatavis3d,-qtlottie,-qtquicktimeline,-qtquickeffectmaker,-qtspeech,-qtmqtt-qtserialbus,-qtserialport,-qtsensors,-qtwebchannel,-qtwebview,-qtwebengine,-qtwayland,-qtopcua,-qtquick3dphysics,-qtquick3d
 
       - name: Set up MSVC
         uses: ilammy/msvc-dev-cmd@v1
