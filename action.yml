@@ -15,9 +15,9 @@ runs:
         else
           os_name=windows
         fi
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.001
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.002
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.003
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-5/qt_static.zip.001
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-5/qt_static.zip.001
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-5/qt_static.zip.001
         7z x -r qt_static.zip.001 -o.\qt_static
         ls -al
         if [[ $os_name == "windows" ]]; then
