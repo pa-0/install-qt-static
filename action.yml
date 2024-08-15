@@ -15,11 +15,10 @@ runs:
         else
           os_name=windows
         fi
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.001
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.002
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.003
-        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2-3/qt-6.7.2-static-windows.zip.zip.004
-        7z x qt-6.7.2-static-windows.zip.zip.001 -r
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.001
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.002
+        cURL -LO https://github.com/pa-0/install-qt-static/releases/download/v6.7.2/qt_static.zip.003
+        7z x -r qt_static.zip.001 -o.\qt_static
         ls -al
         if [[ $os_name == "windows" ]]; then
           echo "$(pwd -W | sed 's,/,\\,g')\qt_static\bin" >> $GITHUB_PATH
