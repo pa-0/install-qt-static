@@ -1,5 +1,9 @@
 # Install Qt Static Action
 
+![GitHub Release](https://img.shields.io/github/v/release/AllanChain/install-qt-static)
+![GitHub Downloads](https://img.shields.io/github/downloads/AllanChain/install-qt-static/total)
+
+
 This action will install and set up a static version of Qt.
 
 > Many thanks to [@gmh5225](https://github.com/gmh5225)'s work.
@@ -42,7 +46,7 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
     - uses: actions/checkout@v4
-    - uses: AllanChain/install-qt-static@v6
+    - uses: AllanChain/install-qt-static@v6.7
     - uses: ilammy/msvc-dev-cmd@v1
       if: contains(matrix.os, 'windows')
 
@@ -59,7 +63,7 @@ jobs:
         mkdir release
         move build\Release\myapp.exe release
 
-    - name: Packing (macOs)
+    - name: Packing (macOS)
       if: contains(matrix.os, 'macos')
       run: |
         mkdir release
