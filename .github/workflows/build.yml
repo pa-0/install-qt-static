@@ -90,6 +90,18 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: release/*
+      - name: Find Qt version
+        shell: python
+        run: |
+          import re
+          import os
+
+          with open("action.yml") as f:
+            action_content = f.read()
+          match = re.search(r"VERSION_TAG: v([\d.]+)", action_content)
+          print("Found Qt version:", match[1])
+          with open(os.environ["GITHUB_ENV"], "a") as f:
+            f.write("QT_VERSION=" + match[1])
       - name: Shorthand tags
         run: |
           git config --global user.email "27856297+dependabot-preview[bot]@users.noreply.github.com"
